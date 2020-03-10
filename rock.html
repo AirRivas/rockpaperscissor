@@ -1,0 +1,92 @@
+
+// Global Variables //
+
+// Scoreboard //
+let playerScore = 0;
+let computerScore = 0;
+
+
+
+
+
+
+
+
+/* generate computer selection, store as var = computerPlay */
+
+function computerSelection() {
+  let options = [`Rock`, `Paper`,  `Scissor`]
+  let pick = Math.random()*3;
+  pick = Math.floor(pick);
+  if (pick==3){pick=2};
+  return options[pick];}
+
+
+/* Create the player selection,
+create Options, prompt options, make catch, return pick into a variable
+*/
+// humanChoice stores var as humanPlay//
+function humanChoice() {
+  let choice = prompt(`Rock, Paper, or Scissor`);
+  if (
+    (choice.toLowerCase() == 'rock')
+  || (choice.toLowerCase() == 'paper')
+  || (choice.toLowerCase() == 'scissor')
+  ) {return choice.toLocaleLowerCase();}
+  else {alert (`invalid selection!`);};
+};
+
+
+/* Make game where when humanPlay == chomputerPlay return tie.
+if Human wins returns `win` and logs a win message
+if Computer wins returns '1oss' and logs a losing message' */
+
+
+function playRound (human, computerPlay){
+var human = humanChoice();
+var computerPlay = computerSelection().toLowerCase();
+
+
+
+
+if(computerPlay == human)
+ {console.log(`you tied`)
+ }
+  else if (human == `rock`){
+    if(computerPlay == `scissor`){console.log(`You chose ${human} against the computer's ${computerPlay}. You win!`);           ++playerScore;
+    }
+    else {console.log(`You chose ${human} to the computer's ${computerPlay} and lost`); ++computerScore;};}
+
+
+else if (human == `scissor`) {
+    if (computerPlay == `rock`){console.log(` You choose ${human} against the computer\'s ${computerPlay} and lost.`);}
+
+    else{console.log(`You choose ${human} against the computer\'s ${computerPlay} and won!`);++playerScore;}
+    }
+
+  else if (human == `paper`) {
+    if (computerPlay == `rock`) { console.log(`You choose ${human} and computer choose ${computerPlay}. Nice job buddy, win.`); ++playerScore;}
+    else {console.log( ` computer used ${computerPlay} and you used ${human}. You lost, fool.`);
+    computerScore++}
+  }
+else{return playRound()}
+  };
+
+
+  function game(){
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    if (playerScore>computerScore) {alert(`you won the best of five with ${playerScore}`);}
+
+
+     else if (playerScore<computerScore){alert(`You lose. the computer won ${computerScore} - ${playerScore}`);};
+     console.log(playerScore);
+
+      if (playerScore==computerScore) {alert(`you tied!`)};
+
+
+  }
+  game();
